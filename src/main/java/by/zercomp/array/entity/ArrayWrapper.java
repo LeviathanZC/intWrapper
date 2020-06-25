@@ -1,5 +1,7 @@
 package by.zercomp.array.entity;
 
+import by.zercomp.array.exception.InvalidDataException;
+
 public class ArrayWrapper {
 
     private static final int START_INDEX = 0;
@@ -24,11 +26,13 @@ public class ArrayWrapper {
         }
     }
 
-    public int get(int index) {
+    public int get(int index) throws InvalidDataException {
+        validateIndex(index);
         return this.array[index];
     }
 
-    public void set(int index, int value) {
+    public void set(int index, int value) throws InvalidDataException {
+        validateIndex(index);
 
     }
 
@@ -36,4 +40,9 @@ public class ArrayWrapper {
         return this.capacity;
     }
 
+    private void validateIndex(int index) throws InvalidDataException {
+        if(index < START_INDEX || index >= this.capacity) {
+            throw new InvalidDataException("index out of range: " + index);
+        }
+    }
 }
