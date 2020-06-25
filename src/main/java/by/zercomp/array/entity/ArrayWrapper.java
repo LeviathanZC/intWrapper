@@ -65,4 +65,14 @@ public class ArrayWrapper {
         sb.append("}\n");
         return sb.toString();
     }
+
+    @Override
+    public int hashCode(){
+        final int prime = 113;
+        int result = capacity;
+        for (int value: this.array) {
+            result += prime * value;
+        }
+        return result;
+    }
 }
