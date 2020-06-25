@@ -33,7 +33,7 @@ public class ArrayWrapper {
 
     public void set(int index, int value) throws InvalidDataException {
         validateIndex(index);
-
+        this.array[index] = value;
     }
 
     public int capacity() {
