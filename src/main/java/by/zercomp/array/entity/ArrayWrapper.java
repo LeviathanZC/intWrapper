@@ -14,7 +14,8 @@ public class ArrayWrapper {
         this.array = new int[this.capacity];
     }
 
-    public ArrayWrapper(int capacity) {
+    public ArrayWrapper(int capacity) throws InvalidDataException {
+        validateIndexCtr(capacity);
         this.array = new int[capacity];
     }
 
@@ -41,8 +42,27 @@ public class ArrayWrapper {
     }
 
     private void validateIndex(int index) throws InvalidDataException {
-        if(index < START_INDEX || index >= this.capacity) {
+        if (index < START_INDEX || index >= this.capacity) {
             throw new InvalidDataException("index out of range: " + index);
         }
+    }
+
+    private void validateIndexCtr(int index) throws InvalidDataException {
+        if (index < START_INDEX) {
+            throw new InvalidDataException("index out of range: " + index);
+        }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Array {");
+        for (int index = START_INDEX; index < this.capacity; index++) {
+            sb.append(this.array[index]);
+            if (index != this.array.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("}\n");
+        return sb.toString();
     }
 }
