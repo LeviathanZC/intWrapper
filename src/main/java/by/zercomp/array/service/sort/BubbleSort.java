@@ -7,16 +7,32 @@ import java.sql.SQLException;
 
 public class BubbleSort implements Sorter {
 
+    private static final int SHIFT = 1;
+
     private BubbleSort() {
     }
-
     private static ArrayWrapper wrapper;
 
     @Override
     public ArrayWrapper sort(ArrayWrapper array) {
-        this.wrapper = array;
-        //time stub
-        return null;
+        wrapper = array;
+        bubbleSort();
+        return wrapper;
+    }
+
+    private void bubbleSort() {
+        final int length = wrapper.length();
+        try {
+            for (int i = 0; i < length - 1; i++) {
+                for (int j = 0; j < length - i - 1; j++) {
+                    if (get(j) < get(j + SHIFT)) {
+                        swap(get(j), get(j + SHIFT));
+                    }
+                }
+            }
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
     }
 
     private void swap(int firstIndex, int secondIndex) {
@@ -37,7 +53,6 @@ public class BubbleSort implements Sorter {
     private void set(int index, int value) throws InvalidDataException {
         wrapper.set(index, value);
     }
-
 
 
 }
