@@ -1,23 +1,14 @@
 package by.zercomp.array.service;
 
 import by.zercomp.array.entity.ArrayWrapper;
+import by.zercomp.array.enumeration.SortType;
 
 public class SorterService {
 
-
-
-    private static ArrayWrapper bubbleSort() {
-        //time stub
-        return null;
+    private SorterService() {
     }
 
-    private static ArrayWrapper quickSort() {
-        //time stub
-        return null;
-    }
-
-    private static ArrayWrapper mergeSort() {
-        //time stub
+    public static ArrayWrapper sort(ArrayWrapper src, SortType type) {
         return null;
     }
 
