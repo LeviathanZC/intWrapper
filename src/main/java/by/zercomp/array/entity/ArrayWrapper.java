@@ -6,23 +6,24 @@ public class ArrayWrapper {
 
     private static final int START_INDEX = 0;
     private static final int DEFAULT_CAPACITY = 8;
-    private int capacity;
-    private int[] array;
+    private final int length;
+    private final int[] array;
 
     public ArrayWrapper() {
-        this.capacity = DEFAULT_CAPACITY;
-        this.array = new int[this.capacity];
+        this.length = DEFAULT_CAPACITY;
+        this.array = new int[this.length];
     }
 
-    public ArrayWrapper(int capacity) throws InvalidDataException {
-        validateIndexCtr(capacity);
-        this.array = new int[capacity];
+    public ArrayWrapper(int length) throws InvalidDataException {
+        validateIndexCtr(length);
+        this.length = length;
+        this.array = new int[length];
     }
 
     public ArrayWrapper(int... elements) {
-        this.capacity = elements.length;
-        this.array = new int[capacity];
-        for (int index = START_INDEX; index < this.capacity; index++) {
+        this.length = elements.length;
+        this.array = new int[length];
+        for (int index = START_INDEX; index < this.length; index++) {
             this.array[index] = elements[index];
         }
     }
@@ -37,8 +38,8 @@ public class ArrayWrapper {
         this.array[index] = value;
     }
 
-    public int capacity() {
-        return this.capacity;
+    public int length() {
+        return this.length;
     }
 
     public int[] getArray() {
@@ -46,7 +47,7 @@ public class ArrayWrapper {
     }
 
     private void validateIndex(int index) throws InvalidDataException {
-        if (index < START_INDEX || index >= this.capacity) {
+        if (index < START_INDEX || index >= this.length) {
             throw new InvalidDataException("index out of range: " + index);
         }
     }
@@ -60,7 +61,7 @@ public class ArrayWrapper {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Array {");
-        for (int index = START_INDEX; index < this.capacity; index++) {
+        for (int index = START_INDEX; index < this.length; index++) {
             sb.append(this.array[index]);
             if (index != this.array.length - 1) {
                 sb.append(", ");
@@ -73,7 +74,7 @@ public class ArrayWrapper {
     @Override
     public int hashCode(){
         final int prime = 113;
-        int result = capacity;
+        int result = length;
         for (int value: this.array) {
             result += prime * value;
         }
@@ -92,11 +93,11 @@ public class ArrayWrapper {
         }
 
         ArrayWrapper other = (ArrayWrapper) o;
-        if (this.capacity != other.capacity) {
+        if (this.length != other.length) {
             return false;
         }
         final int[] otherArray = other.getArray();
-        for (int index = 0; index < this.capacity; index++) {
+        for (int index = 0; index < this.length; index++) {
             if (this.array[index] != otherArray[index]) {
                 return false;
             }
