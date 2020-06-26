@@ -2,7 +2,7 @@ package by.zercomp.array.service.sort;
 
 import by.zercomp.array.entity.ArrayWrapper;
 
-public interface SortInterface {
+public interface Sorter {
 
     ArrayWrapper sort(ArrayWrapper array);
 
