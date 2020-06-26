@@ -2,24 +2,15 @@ package by.zercomp.array.service;
 
 import by.zercomp.array.entity.ArrayWrapper;
 import by.zercomp.array.exception.InvalidDataException;
+import by.zercomp.array.validator.WrapperValidator;
 
 public class MaxMinService {
 
     private MaxMinService() {
     }
 
-    private static final int ZERO_LENGTH = 0;
-
-    private static boolean isNull(ArrayWrapper arrayWrapper) {
-        return arrayWrapper == null;
-    }
-
-    private static boolean hasZeroLength(ArrayWrapper arrayWrapper) {
-        return arrayWrapper.getArray().length == ZERO_LENGTH;
-    }
-
     public static int max(ArrayWrapper arrayWrapper) throws InvalidDataException {
-        if (isNull(arrayWrapper) || hasZeroLength(arrayWrapper)) {
+        if (WrapperValidator.isNullOrHasZeroLength(arrayWrapper)) {
             throw new InvalidDataException("ArrayWrapper must be not null or have zero length");
         }
         int maxElement = arrayWrapper.get(0);
@@ -32,7 +23,7 @@ public class MaxMinService {
 
     public static int min(ArrayWrapper arrayWrapper) throws InvalidDataException {
         if (arrayWrapper == null) {
-            throw new InvalidDataException("ArrayWrapper must be not null");
+            throw new InvalidDataException("ArrayWrapper must be not null or have zero length");
         }
         int minElement = arrayWrapper.get(0);
         final int end = arrayWrapper.length();
