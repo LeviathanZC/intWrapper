@@ -41,6 +41,10 @@ public class ArrayWrapper {
         return this.capacity;
     }
 
+    public int[] getArray() {
+        return this.array;
+    }
+
     private void validateIndex(int index) throws InvalidDataException {
         if (index < START_INDEX || index >= this.capacity) {
             throw new InvalidDataException("index out of range: " + index);
@@ -74,5 +78,29 @@ public class ArrayWrapper {
             result += prime * value;
         }
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //проверяем один и тот же объект
+        if(this == o) {
+            return true;
+        }
+        //исключаем NPE и различие классов
+        if(o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        ArrayWrapper other = (ArrayWrapper) o;
+        if (this.capacity != other.capacity) {
+            return false;
+        }
+        final int[] otherArray = other.getArray();
+        for (int index = 0; index < this.capacity; index++) {
+            if (this.array[index] != otherArray[index]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
