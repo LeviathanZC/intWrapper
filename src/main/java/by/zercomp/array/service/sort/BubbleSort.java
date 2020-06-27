@@ -7,7 +7,7 @@ public class BubbleSort extends AbstractSort {
 
     private static final int SHIFT = 1;
 
-    private BubbleSort() {
+    public BubbleSort() {
     }
 
     private static ArrayWrapper wrapper;
